@@ -7,7 +7,17 @@
 <body>
     <h1>👤 Registrar Nuevo Usuario</h1>
 
-    <form action="{{ route('usuario.index') }}" method="POST">
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('usuario.store') }}" method="POST">
         @csrf
 
         <label for="nombre">Nombre Completo:</label>

@@ -7,7 +7,17 @@
 <body>
     <h1>Registrar Nuevo Género</h1>
 
-    <form action="{{ route('genero.index') }}" method="POST">
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('genero.store') }}" method="POST">
         @csrf
 
         <label for="genero">Nombre del Género:</label>

@@ -6,8 +6,17 @@
 </head>
 <body>
     <h1>Registrar Nueva Existencia</h1>
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <form action="{{ route('existencias.index') }}" method="POST">
+    <form action="{{ route('existencias.store') }}" method="POST">
         @csrf
 
         <label for="libro_id">ID del Libro:</label>
