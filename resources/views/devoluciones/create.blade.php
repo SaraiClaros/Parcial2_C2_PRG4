@@ -7,7 +7,7 @@
 <body>
     <h1>Registrar Devolución</h1>
 
-    <form action="{{ route('devoluciones.index') }}" method="POST">
+    <form action="{{ route('devoluciones.store') }}" method="POST">
         @csrf
 
         <label for="prestamo_id">ID del Préstamo:</label>

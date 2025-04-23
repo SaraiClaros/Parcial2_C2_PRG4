@@ -17,12 +17,9 @@ class ExistenciasController extends Controller
         return view('existencias.index', compact('existencias'));
     }
 
-    /**
-     * Mostrar el formulario para crear una nueva existencia.
-     */
     public function create()
     {
-        $libros = Libro::all(); 
+        $libros = LibrosModel::all(); 
         return view('existencias.create', compact('libros'));
     }
 

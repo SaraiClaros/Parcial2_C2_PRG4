@@ -7,7 +7,7 @@
 <body>
     <h1>📘 Registrar Nuevo Préstamo</h1>
 
-    <form action="{{ route('prestamos.index') }}" method="POST">
+    <form action="{{ route('prestamos.store') }}" method="POST">
         @csrf
 
         <label for="usuario_id">ID del Usuario:</label>

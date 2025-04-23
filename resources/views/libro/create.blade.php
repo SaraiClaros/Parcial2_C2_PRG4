@@ -7,7 +7,17 @@
 <body>
     <h1>📘 Registrar Nuevo Libro</h1>
 
-    <form action="{{ route('libro.index') }}" method="POST">
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('libro.store') }}" method="POST">
         @csrf
 
         <label for="titulo">Título:</label>

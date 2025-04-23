@@ -16,7 +16,7 @@ class LibrosModel extends Model
         'autor',
         'editorial',
         'anio_publicacion',
-        'genero_id',
+        'genero',
         'clasificacion_tematica',
         'cantidad_disponible',
         'estado',

@@ -17,7 +17,7 @@ return new class extends Migration
         $table->string('autor');
         $table->string('editorial');
         $table->year('anio_publicacion');
-        $table->integer('genero');
+        $table->string('genero');
         $table->string('clasificacion_tematica');
         $table->integer('cantidad_disponible');
         $table->enum('estado', ['Disponible', 'Prestado', 'No disponible']);

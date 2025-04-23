@@ -7,7 +7,7 @@
 <body>
     <h1>Registrar Nueva Actividad</h1>
 
-    <form action="{{ route('historial.index') }}" method="POST">
+    <form action="{{ route('historial.store') }}" method="POST">
         @csrf
 
         <label for="usuario_id">ID del Usuario:</label>
