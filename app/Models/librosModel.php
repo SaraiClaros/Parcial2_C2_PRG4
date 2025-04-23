@@ -22,9 +22,7 @@ class LibrosModel extends Model
         'estado',
     ];
 
-    /**
-     * Relación con el modelo Género.
-     */
+   
     public function genero()
     {
         return $this->belongsTo(GeneroModel::class);

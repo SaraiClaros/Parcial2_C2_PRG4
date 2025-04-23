@@ -18,7 +18,7 @@ return new class extends Migration
         $table->string('codigo_identificacion')->unique(); 
 
         $table->timestamps();
-        $table->foreign('libros_id')->references('id')->on('libros')->onDelete('cascade');
+        $table->foreign('libros_id')->references('libros_id')->on('libros')->onDelete('cascade');
         });
     }
 

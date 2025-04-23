@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('detalle')->nullable();
             $table->dateTime('fecha');
             $table->timestamps();
-            $table->foreign('usuarios_id')->references('id')->on('usuarios')->onDelete('cascade');
+
+            $table->foreign('usuarios_id')->references('usuarios_id')->on('usuarios')->onDelete('cascade');
         });
     }
 

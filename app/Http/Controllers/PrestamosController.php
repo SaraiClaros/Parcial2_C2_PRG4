@@ -9,18 +9,14 @@ use Illuminate\Http\Request;
 
 class PrestamosController extends Controller
 {
-    /**
-     * Mostrar el listado de préstamos.
-     */
+    
     public function index()
     {
         $prestamos = PrestamosModel::with(['usuarios', 'libros'])->get(); 
         return view('prestamos.index', compact('prestamos'));
     }
 
-    /**
-     * Mostrar el formulario para crear un nuevo préstamo.
-     */
+    
     public function create()
     {
         $usuarios = UsuariosModel::all();  
@@ -28,35 +24,30 @@ class PrestamosController extends Controller
         return view('prestamos.create', compact('usuarios', 'libros'));
     }
 
-    /**
-     * Almacenar un nuevo préstamo en la base de datos.
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
-            'usuarios_id' => 'required|exists:usuarios,id',
-            'libros_id' => 'required|exists:libros,id',
+            'usuarios_id' => 'required|exists:usuarios,usuarios_id',
+            'libros_id' => 'required|exists:libros,libros_id',
             'fecha_prestamo' => 'required|date',
             'fecha_devolucion' => 'required|date',
             'estado' => 'required|in:En curso,Devuelto,Atrasado',
         ]);
 
-        Prestamo::create($request->all());
+        PrestamosModel::create($request->all());
 
         return redirect()->route('prestamos.index')->with('success', 'Préstamo registrado correctamente.');
     }
 
 
     
-    /**
-     * Actualizar los datos de un préstamo.
-     */
     public function update(Request $request, $id)
     {
         // Validar los datos
         $validated = $request->validate([
-            'usuarios_id' => 'required|integer|exists:usuarios,id',
-            'libros_id' => 'required|integer|exists:libros,id',
+            'usuarios_id' => 'required|exists:usuarios,usuarios_id',
+            'libros_id' => 'required|exists:libros,libros_id',
             'fecha_prestamo' => 'required|date',
             'fecha_devolucion' => 'required|date',
             'estado' => 'required|in:activo,devuelto',
@@ -68,9 +59,7 @@ class PrestamosController extends Controller
         return redirect()->route('prestamos.index')->with('success', 'Préstamo actualizado correctamente.');
     }
 
-    /**
-     * Eliminar un préstamo.
-     */
+
     public function destroy($id)
     {
         $prestamo = PrestamosModel::findOrFail($id);

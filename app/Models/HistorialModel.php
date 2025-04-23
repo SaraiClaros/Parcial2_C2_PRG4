@@ -8,22 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class HistorialModel extends Model
 {
     use HasFactory;
+
     protected $table = 'historial_actividades';
-
-   
+    
     protected $fillable = [
-        'prestamos_id',
-        'fecha_prestamo',
-        'fecha_devolucion',
-        'estado',
-        'observaciones',
+        'usuarios_id',
+        'accion',
+        'detalle',
+        'fecha',
     ];
-
-    /**
-     * Relación con el modelo Préstamo.
-     */
-    public function prestamo()
-    {
-        return $this->belongsTo(PrestamosModel::class);
-    }
 }

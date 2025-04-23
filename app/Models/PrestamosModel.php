@@ -19,19 +19,15 @@ class PrestamosModel extends Model
         'estado',
     ];
 
-    /**
-     * Relación con el modelo Usuario.
-     */
-    public function usuario()
+    
+    public function usuarios()
     {
-        return $this->belongsTo(UsuariosModel::class);
+        return $this->belongsTo(UsuariosModel::class, 'usuarios_id', 'usuarios_id');
     }
 
-    /**
-     * Relación con el modelo Libro.
-     */
+   
     public function libros()
     {
-        return $this->belongsTo(LibrosModel::class);
+        return $this->belongsTo(LibrosModel::class,'libros_id', 'libros_id' );
     }
 }

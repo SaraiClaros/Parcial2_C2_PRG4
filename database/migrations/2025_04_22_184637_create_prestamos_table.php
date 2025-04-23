@@ -20,8 +20,8 @@ return new class extends Migration
             $table->enum('estado', ['En curso', 'Devuelto', 'Atrasado']);
             $table->timestamps();
     
-            $table->foreign('usuarios_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->foreign('libros_id')->references('id')->on('libros')->onDelete('cascade');
+            $table->foreign('usuarios_id')->references('usuarios_id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('libros_id')->references('libros_id')->on('libros')->onDelete('cascade');
         });
     }
 

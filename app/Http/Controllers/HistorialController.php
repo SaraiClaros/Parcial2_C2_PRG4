@@ -3,79 +3,66 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistorialModel;
-use App\Models\PrestamosModel;
 use Illuminate\Http\Request;
 
 class HistorialController extends Controller
 {
-    /**
-     * Mostrar el listado de historiales.
-     */
     public function index()
     {
-        $historiales = HistorialModel::with('prestamo')->get(); 
+        $historiales = HistorialModel::all(); 
         return view('historial.index', compact('historiales'));
     }
 
-    /**
-     * Mostrar el formulario para crear un nuevo historial.
-     */
+    
     public function create()
     {
-        $prestamos = PrestamosModel::all(); 
-        return view('historial.create', compact('prestamos'));
+        return view('historial.create');
     }
 
-    /**
-     * Almacenar un nuevo historial en la base de datos.
-     */
+  
     public function store(Request $request)
     {
-       
         $validated = $request->validate([
-            'prestamos_id' => 'required|integer|exists:prestamos,id',
-            'fecha_prestamo' => 'required|date',
-            'fecha_devolucion' => 'required|date',
-            'estado' => 'required|string|in:Activo,Devuelto,En Proceso',
-            'observaciones' => 'nullable|string',
+            'usuarios_id' => 'required|integer|exists:usuarios,usuarios_id',
+            'accion' => 'required|string|max:255',
+            'detalle' => 'nullable|string',
+            'fecha' => 'required|date',
         ]);
 
        
         HistorialModel::create($validated);
 
-       
+        
         return redirect()->route('historial.index')->with('success', 'Historial registrado correctamente.');
     }
 
-
-    /**
-     * Actualizar los datos de un historial.
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $historial_id)
     {
-        // Validar los datos
         $validated = $request->validate([
-            'prestamos_id' => 'required|integer|exists:prestamos,id',
-            'fecha_prestamo' => 'required|date',
-            'fecha_devolucion' => 'required|date',
-            'estado' => 'required|string|in:Activo,Devuelto,En Proceso',
-            'observaciones' => 'nullable|string',
+            'usuarios_id' => 'required|integer|exists:usuarios,usuarios_id',
+            'accion' => 'required|string|max:255',
+            'detalle' => 'nullable|string',
+            'fecha' => 'required|date',
         ]);
 
-        $historial = HistorialModel::findOrFail($id);
+       
+        $historial = HistorialModel::findOrFail($historial_id);
+
+        
         $historial->update($validated);
 
+       
         return redirect()->route('historial.index')->with('success', 'Historial actualizado correctamente.');
     }
 
-    /**
-     * Eliminar un historial.
-     */
-    public function destroy($id)
+    
+    public function destroy($historial_id)
     {
-        $historial = HistorialModel::findOrFail($id);
+        
+        $historial = HistorialModel::findOrFail($historial_id);
         $historial->delete();
 
+        
         return redirect()->route('historial.index')->with('success', 'Historial eliminado correctamente.');
     }
 }

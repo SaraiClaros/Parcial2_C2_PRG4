@@ -18,8 +18,10 @@ class DevolucionesModel extends Model
     ];
 
    
-    public function prestamo()
+    public function prestamos()
     {
-        return $this->belongsTo(PrestamosModel::class);
+        return $this->belongsTo(PrestamosModel::class, 'prestamos_id', 'prestamos_id');
     }
+
+   
 }
