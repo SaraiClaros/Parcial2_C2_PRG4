@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('devoluciones', function (Blueprint $table) {
-        $table->increments('id'); 
-        $table->unsignedInteger('prestamo_id');
+        $table->increments('devoluciones_id'); 
+        $table->unsignedInteger('prestamos_id');
         $table->date('fecha_devolucion_real');
         $table->text('observaciones')->nullable(); 
         $table->timestamps();
 
-        // Definir la llave foránea
-        $table->foreign('prestamo_id')->references('id')->on('prestamos')->onDelete('cascade');
+       
+        $table->foreign('prestamos_id')->references('id')->on('prestamos')->onDelete('cascade');
         });
     }
 

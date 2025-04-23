@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('historial_actividades', function (Blueprint $table) {
-            $table->increments('id'); 
-            $table->unsignedInteger('usuario_id');
+            $table->increments('historial_id'); 
+            $table->unsignedInteger('usuarios_id');
             $table->string('accion'); 
             $table->text('detalle')->nullable();
             $table->dateTime('fecha');
             $table->timestamps();
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('usuarios_id')->references('id')->on('usuarios')->onDelete('cascade');
         });
     }
 

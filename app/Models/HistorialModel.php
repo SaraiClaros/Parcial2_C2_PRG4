@@ -12,7 +12,7 @@ class HistorialModel extends Model
 
    
     protected $fillable = [
-        'prestamo_id',
+        'prestamos_id',
         'fecha_prestamo',
         'fecha_devolucion',
         'estado',

@@ -19,8 +19,8 @@
     <form action="{{ route('devoluciones.store') }}" method="POST">
         @csrf
 
-        <label for="prestamo_id">ID del Préstamo:</label>
-        <input type="number" name="prestamo_id" required><br><br>
+        <label for="prestamos_id">ID del Préstamo:</label>
+        <input type="number" name="prestamos_id" required><br><br>
 
         <label for="fecha_devolucion_real">Fecha de Devolución Real:</label>
         <input type="date" name="fecha_devolucion_real" required><br><br>

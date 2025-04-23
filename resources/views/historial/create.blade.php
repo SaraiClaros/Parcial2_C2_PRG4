@@ -19,8 +19,8 @@
     <form action="{{ route('historial.store') }}" method="POST">
         @csrf
 
-        <label for="usuario_id">ID del Usuario:</label>
-        <input type="number" name="usuario_id" required><br><br>
+        <label for="usuarios_id">ID del Usuario:</label>
+        <input type="number" name="usuarios_id" required><br><br>
 
         <label for="accion">Acción:</label>
         <input type="text" name="accion" required><br><br>

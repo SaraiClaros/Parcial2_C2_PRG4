@@ -13,7 +13,7 @@ class ExistenciasModel extends Model
     protected $table = 'existencias';
 
     protected $fillable = [
-        'libro_id',
+        'libros_id',
         'ubicacion_general',
         'codigo_identificacion',
     ];

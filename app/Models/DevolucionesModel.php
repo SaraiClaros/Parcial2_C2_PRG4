@@ -12,7 +12,7 @@ class DevolucionesModel extends Model
 
     
     protected $fillable = [
-        'prestamo_id',
+        'prestamos_id',
         'fecha_devolucion_real',
         'observaciones',
     ];

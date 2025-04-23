@@ -14,7 +14,7 @@ class PrestamosController extends Controller
      */
     public function index()
     {
-        $prestamos = PrestamosModel::with(['usuario', 'libro'])->get(); 
+        $prestamos = PrestamosModel::with(['usuarios', 'libros'])->get(); 
         return view('prestamos.index', compact('prestamos'));
     }
 
@@ -33,21 +33,19 @@ class PrestamosController extends Controller
      */
     public function store(Request $request)
     {
-       
-        $validated = $request->validate([
-            'usuario_id' => 'required|integer|exists:usuarios,id',
-            'libro_id' => 'required|integer|exists:libros,id',
+        $request->validate([
+            'usuarios_id' => 'required|exists:usuarios,id',
+            'libros_id' => 'required|exists:libros,id',
             'fecha_prestamo' => 'required|date',
             'fecha_devolucion' => 'required|date',
-            'estado' => 'required|in:activo,devuelto',
+            'estado' => 'required|in:En curso,Devuelto,Atrasado',
         ]);
 
-       
-        PrestamosModel::create($validated);
+        Prestamo::create($request->all());
 
-        
         return redirect()->route('prestamos.index')->with('success', 'Préstamo registrado correctamente.');
     }
+
 
     
     /**
@@ -57,8 +55,8 @@ class PrestamosController extends Controller
     {
         // Validar los datos
         $validated = $request->validate([
-            'usuario_id' => 'required|integer|exists:usuarios,id',
-            'libro_id' => 'required|integer|exists:libros,id',
+            'usuarios_id' => 'required|integer|exists:usuarios,id',
+            'libros_id' => 'required|integer|exists:libros,id',
             'fecha_prestamo' => 'required|date',
             'fecha_devolucion' => 'required|date',
             'estado' => 'required|in:activo,devuelto',

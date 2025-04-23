@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('prestamos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('usuario_id');
-            $table->unsignedInteger('libro_id');
+            $table->increments('prestamos_id');
+            $table->unsignedInteger('usuarios_id');
+            $table->unsignedInteger('libros_id');
             $table->date('fecha_prestamo');
             $table->date('fecha_devolucion');
             $table->enum('estado', ['En curso', 'Devuelto', 'Atrasado']);
             $table->timestamps();
     
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->foreign('libro_id')->references('id')->on('libros')->onDelete('cascade');
+            $table->foreign('usuarios_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('libros_id')->references('id')->on('libros')->onDelete('cascade');
         });
     }
 

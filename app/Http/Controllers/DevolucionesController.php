@@ -33,7 +33,7 @@ class DevolucionesController extends Controller
     {
         // Validar los datos
         $validated = $request->validate([
-            'prestamo_id' => 'required|integer|exists:prestamos,id',
+            'prestamos_id' => 'required|integer|exists:prestamos,id',
             'fecha_devolucion_real' => 'required|date',
             'observaciones' => 'nullable|string',
         ]);
@@ -51,7 +51,7 @@ class DevolucionesController extends Controller
     {
         
         $validated = $request->validate([
-            'prestamo_id' => 'required|integer|exists:prestamos,id',
+            'prestamos_id' => 'required|integer|exists:prestamos,id',
             'fecha_devolucion_real' => 'required|date',
             'observaciones' => 'nullable|string',
         ]);

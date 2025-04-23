@@ -28,7 +28,7 @@ class ExistenciasController extends Controller
     {
         
         $validated = $request->validate([
-            'libro_id' => 'required|integer|exists:libros,id',
+            'libros_id' => 'required|integer|exists:libros,id',
             'ubicacion_general' => 'required|string|max:255',
             'codigo_identificacion' => 'required|string|unique:existencias,codigo_identificacion',
         ]);
@@ -47,7 +47,7 @@ class ExistenciasController extends Controller
     {
         
         $validated = $request->validate([
-            'libro_id' => 'required|integer|exists:libros,id',
+            'libros_id' => 'required|integer|exists:libros,id',
             'ubicacion_general' => 'required|string|max:255',
             'codigo_identificacion' => 'required|string|unique:existencias,codigo_identificacion,' . $id,
         ]);

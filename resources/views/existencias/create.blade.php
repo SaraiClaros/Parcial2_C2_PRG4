@@ -19,8 +19,8 @@
     <form action="{{ route('existencias.store') }}" method="POST">
         @csrf
 
-        <label for="libro_id">ID del Libro:</label>
-        <input type="number" name="libro_id" required><br><br>
+        <label for="libros_id">ID del Libro:</label>
+        <input type="number" name="libros_id" required><br><br>
 
         <label for="ubicacion_general">Ubicación General:</label>
         <input type="text" name="ubicacion_general" required><br><br>

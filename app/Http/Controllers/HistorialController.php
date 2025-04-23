@@ -33,7 +33,7 @@ class HistorialController extends Controller
     {
        
         $validated = $request->validate([
-            'prestamo_id' => 'required|integer|exists:prestamos,id',
+            'prestamos_id' => 'required|integer|exists:prestamos,id',
             'fecha_prestamo' => 'required|date',
             'fecha_devolucion' => 'required|date',
             'estado' => 'required|string|in:Activo,Devuelto,En Proceso',
@@ -55,7 +55,7 @@ class HistorialController extends Controller
     {
         // Validar los datos
         $validated = $request->validate([
-            'prestamo_id' => 'required|integer|exists:prestamos,id',
+            'prestamos_id' => 'required|integer|exists:prestamos,id',
             'fecha_prestamo' => 'required|date',
             'fecha_devolucion' => 'required|date',
             'estado' => 'required|string|in:Activo,Devuelto,En Proceso',
