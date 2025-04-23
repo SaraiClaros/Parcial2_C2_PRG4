@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Préstamo</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
 </head>
 <body>
     <h1>📘 Registrar Nuevo Préstamo</h1>

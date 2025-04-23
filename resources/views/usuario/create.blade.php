@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Nuevo Usuario</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
 </head>
 <body>
     <h1>👤 Registrar Nuevo Usuario</h1>

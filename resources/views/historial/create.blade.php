@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Actividad</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
 </head>
 <body>
     <h1>Registrar Nueva Actividad</h1>

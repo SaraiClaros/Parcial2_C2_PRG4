@@ -4,29 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Devoluciones</title>
-    <style>
-       
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
 
-        th, td {
-            border: 1px solid #ddd; 
-            padding: 8px; 
-            text-align: left; 
-        }
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 
-        th {
-            background-color: #f2f2f2;
-        }
-
-      
-        .no-result {
-            text-align: center;
-            color: red;
-        }
-    </style>
+    
 </head>
 <body>
     <h1>Listado de Devoluciones</h1>
@@ -60,6 +41,8 @@
             </tbody>
         </table>
     @endif
+
+    <a href="{{ url('/') }}" class="footer-link">🔙 Volver al inicio</a>
 
 </body>
 </html>

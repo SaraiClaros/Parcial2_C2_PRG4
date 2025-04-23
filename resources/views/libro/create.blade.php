@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Libro</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+
+
 </head>
 <body>
     <h1>📘 Registrar Nuevo Libro</h1>

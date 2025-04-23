@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class ExistenciasController extends Controller
 {
-    /**
-     * Mostrar el listado de existencias.
-     */
+    
     public function index()
     {
         $existencias = ExistenciasModel::with('libro')->get(); 

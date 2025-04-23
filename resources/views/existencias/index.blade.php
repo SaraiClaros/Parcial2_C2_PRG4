@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Existencias</title>
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 </head>
 <body>
     <h1>📚 Listado de Existencias</h1>

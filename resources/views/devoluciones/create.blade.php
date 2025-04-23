@@ -3,6 +3,10 @@
 <html>
 <head>
     <title>Registrar Devolución</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+   
+
 </head>
 <body>
     <h1>Registrar Devolución</h1>

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Libros</title>
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 </head>
 <body>
     <h1>📖 Listado de Libros</h1>
 
     <a href="{{ route('libro.create') }}">➕ Registrar Nuevo Libro</a>
-    <br><br>
 
     @if(session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
+        <p>{{ session('success') }}</p>
     @endif
 
     <table>
@@ -45,7 +45,6 @@
         </tbody>
     </table>
 
-    <br>
-    <a href="{{ url('/') }}">🔙 Volver al inicio</a>
+    <a href="{{ url('/') }}" class="footer-link">🔙 Volver al inicio</a>
 </body>
 </html>

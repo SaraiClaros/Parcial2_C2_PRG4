@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Géneros</title>
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 </head>
 <body>
     <h1>🎭 Listado de Géneros</h1>
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
+
 
     <a href="{{ route('genero.create') }}">➕ Registrar Nuevo Género</a>
     <br><br>

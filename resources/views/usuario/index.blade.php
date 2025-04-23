@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Usuarios</title>
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 </head>
 <body>
     <h1>👥 Listado de Usuarios</h1>
 
     <a href="{{ route('usuario.create') }}">➕ Registrar Nuevo Usuario</a>
-    <br><br>
 
     @if(session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
+        <p class="success">{{ session('success') }}</p>
     @endif
 
     <table>
@@ -27,13 +27,12 @@
         <tbody>
             @foreach($usuarios as $usuario)
                 <tr>
-                    <td>{{ $usuario->id }}</td>
+                    <td>{{ $usuario->usuarios_id }}</td>
                     <td>{{ $usuario->nombre }}</td>
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->rol }}</td>
                     <td>
-                        
-                        </form>
+        
                     </td>
                 </tr>
             @endforeach

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Historial de Actividades</title>
+    <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 </head>
 <body>
     <h1>📜 Historial de Actividades</h1>
