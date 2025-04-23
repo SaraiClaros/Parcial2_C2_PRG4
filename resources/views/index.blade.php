@@ -9,12 +9,12 @@
 
     <nav>
         <ul>
-            <li><a href="{{ route('libros.index') }}">📘 Libros</a></li>
-            <li><a href="{{ route('usuarios.index') }}">👤 Usuarios</a></li>
+            <li><a href="{{ route('libro.index') }}">📘 Libros</a></li>
+            <li><a href="{{ route('usuario.index') }}">👤 Usuarios</a></li>
             <li><a href="{{ route('prestamos.index') }}">📤 Préstamos</a></li>
             <li><a href="{{ route('devoluciones.index') }}">📥 Devoluciones</a></li>
             <li><a href="{{ route('historial.index') }}">📄 Historial</a></li>
-            <li><a href="{{ route('generos.index') }}">🏷️ Géneros</a></li>
+            <li><a href="{{ route('genero.index') }}">🏷️ Géneros</a></li>
             <li><a href="{{ route('existencias.index') }}">📦 Existencias</a></li>
         </ul>
     </nav>

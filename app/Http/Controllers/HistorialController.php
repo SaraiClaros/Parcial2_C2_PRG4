@@ -2,63 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistorialModel;
+use App\Models\PrestamosModel;
 use Illuminate\Http\Request;
 
 class HistorialController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar el listado de historiales.
      */
     public function index()
     {
-        //
+        $historiales = HistorialModel::with('prestamo')->get(); 
+        return view('historial.index', compact('historiales'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar el formulario para crear un nuevo historial.
      */
     public function create()
     {
-        //
+        $prestamos = PrestamosModel::all(); 
+        return view('historial.create', compact('prestamos'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacenar un nuevo historial en la base de datos.
      */
     public function store(Request $request)
     {
-        //
+       
+        $validated = $request->validate([
+            'prestamo_id' => 'required|integer|exists:prestamos,id',
+            'fecha_prestamo' => 'required|date',
+            'fecha_devolucion' => 'required|date',
+            'estado' => 'required|string|in:Activo,Devuelto,En Proceso',
+            'observaciones' => 'nullable|string',
+        ]);
+
+       
+        HistorialModel::create($validated);
+
+       
+        return redirect()->route('historial.index')->with('success', 'Historial registrado correctamente.');
+    }
+
+
+    /**
+     * Actualizar los datos de un historial.
+     */
+    public function update(Request $request, $id)
+    {
+        // Validar los datos
+        $validated = $request->validate([
+            'prestamo_id' => 'required|integer|exists:prestamos,id',
+            'fecha_prestamo' => 'required|date',
+            'fecha_devolucion' => 'required|date',
+            'estado' => 'required|string|in:Activo,Devuelto,En Proceso',
+            'observaciones' => 'nullable|string',
+        ]);
+
+        $historial = HistorialModel::findOrFail($id);
+        $historial->update($validated);
+
+        return redirect()->route('historial.index')->with('success', 'Historial actualizado correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Eliminar un historial.
      */
-    public function show(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $historial = HistorialModel::findOrFail($id);
+        $historial->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('historial.index')->with('success', 'Historial eliminado correctamente.');
     }
 }

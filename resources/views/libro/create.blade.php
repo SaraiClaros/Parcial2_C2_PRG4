@@ -7,7 +7,7 @@
 <body>
     <h1>📘 Registrar Nuevo Libro</h1>
 
-    <form action="{{ route('libros.store') }}" method="POST">
+    <form action="{{ route('libro.index') }}" method="POST">
         @csrf
 
         <label for="titulo">Título:</label>
@@ -42,6 +42,6 @@
     </form>
 
     <br>
-    <a href="{{ route('libros.index') }}">🔙 Volver al listado de libros</a>
+    <a href="{{ route('libro.index') }}">🔙 Ver listado de libros</a>
 </body>
 </html>

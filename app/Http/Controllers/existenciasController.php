@@ -2,63 +2,71 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExistenciasModel;
+use App\Models\LibrosModel;
 use Illuminate\Http\Request;
 
-class existenciasController extends Controller
+class ExistenciasController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar el listado de existencias.
      */
     public function index()
     {
-        //
+        $existencias = ExistenciasModel::with('libro')->get(); 
+        return view('existencias.index', compact('existencias'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar el formulario para crear una nueva existencia.
      */
     public function create()
     {
-        //
+        $libros = Libro::all(); 
+        return view('existencias.create', compact('libros'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        //
+        
+        $validated = $request->validate([
+            'libro_id' => 'required|integer|exists:libros,id',
+            'ubicacion_general' => 'required|string|max:255',
+            'codigo_identificacion' => 'required|string|unique:existencias,codigo_identificacion',
+        ]);
+
+       
+        ExistenciasModel::create($validated);
+
+       
+        return redirect()->route('existencias.index')->with('success', 'Existencia registrada correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+  
+    
+
+    public function update(Request $request, $id)
     {
-        //
+        
+        $validated = $request->validate([
+            'libro_id' => 'required|integer|exists:libros,id',
+            'ubicacion_general' => 'required|string|max:255',
+            'codigo_identificacion' => 'required|string|unique:existencias,codigo_identificacion,' . $id,
+        ]);
+
+        $existencia = ExistenciasModel::findOrFail($id);
+        $existencia->update($validated);
+
+        return redirect()->route('existencias.index')->with('success', 'Existencia actualizada correctamente.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+   
+    public function destroy($id)
     {
-        //
-    }
+        $existencia = ExistenciasModel::findOrFail($id);
+        $existencia->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('existencias.index')->with('success', 'Existencia eliminada correctamente.');
     }
 }

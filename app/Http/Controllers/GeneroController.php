@@ -2,63 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GeneroModel;
 use Illuminate\Http\Request;
 
 class GeneroController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar el listado de géneros.
      */
     public function index()
     {
-        //
+        $generos = GeneroModel::all(); 
+        return view('genero.index', compact('generos'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar el formulario para crear un nuevo género.
      */
     public function create()
     {
-        //
+        return view('genero.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacenar un nuevo género en la base de datos.
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos
+        $validated = $request->validate([
+            'genero' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+        ]);
+
+       
+        GeneroModel::create($validated);
+
+        
+        return redirect()->route('genero.index')->with('success', 'Género registrado correctamente.');
+    }
+
+    
+  
+
+    /**
+     * Actualizar los datos de un género.
+     */
+    public function update(Request $request, $id)
+    {
+        // Validar los datos
+        $validated = $request->validate([
+            'genero' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+        ]);
+
+        $genero = GeneroModel::findOrFail($id);
+        $genero->update($validated);
+
+        return redirect()->route('genero.index')->with('success', 'Género actualizado correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Eliminar un género.
      */
-    public function show(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $genero = GeneroModel::findOrFail($id);
+        $genero->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('genero.index')->with('success', 'Género eliminado correctamente.');
     }
 }

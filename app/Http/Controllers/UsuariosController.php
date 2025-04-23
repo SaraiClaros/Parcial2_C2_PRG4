@@ -2,63 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UsuariosModel;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Mostrar el listado de usuarios
     public function index()
     {
-        //
+        $usuarios = UsuariosModel::all();
+        return view('usuario.index', compact('usuarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Mostrar el formulario para crear un nuevo usuario
     public function create()
     {
-        //
+        return view('usuario.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Almacenar un nuevo usuario
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email|unique:usuarios,email',
+            'password' => 'required|string|min:8',
+            'rol' => 'required|in:admin,lector',
+        ]);
+
+        $validated['password'] = bcrypt($validated['password']); // encripta la contraseña
+
+        UsuariosModel::create($validated);
+
+        return redirect()->route('usuario.index')->with('success', 'Usuario creado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    // Actualizar el usuario
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email|unique:usuarios,email,' . $id,
+            'password' => 'nullable|string|min:8',
+            'rol' => 'required|in:admin,lector',
+        ]);
+
+        $usuario = UsuariosModel::findOrFail($id);
+        if ($request->filled('password')) {
+            $validated['password'] = bcrypt($request->password);
+        } else {
+            unset($validated['password']);
+        }
+
+        $usuario->update($validated);
+
+        return redirect()->route('usuario.index')->with('success', 'Usuario actualizado correctamente.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // Eliminar un usuario
+    public function destroy($id)
     {
-        //
-    }
+        $usuario = UsuariosModel::findOrFail($id);
+        $usuario->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('usuario.index')->with('success', 'Usuario eliminado correctamente.');
     }
 }
