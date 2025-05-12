@@ -19,7 +19,7 @@
 @yield('content')
 
 <footer>
-    📖 Biblioteca Central © {{ date('Y') }}
+    📖 Book Organizer {{ date('Y') }}
 </footer>
 
 </body>
