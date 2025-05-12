@@ -4,24 +4,92 @@
 
 @section('content')
 
-    <div class="container">
-        <h1>📚 Bienvenido a la Biblioteca</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Gestión de Bibliotecaria - Book Organizer</title>
+  <style>
 
-       
-            <ul>
-                <li><a href="{{ route('libro.index') }}">📘 Libros</a></li>
-                <li><a href="{{ route('usuario.index') }}">👤 Usuarios</a></li>
-                <li><a href="{{ route('prestamos.index') }}">📤 Préstamos</a></li>
-                <li><a href="{{ route('devoluciones.index') }}">📥 Devoluciones</a></li>
-                <li><a href="{{ route('historial.index') }}">📄 Historial</a></li>
-                <li><a href="{{ route('genero.index') }}">🏷️ Géneros</a></li>
-                <li><a href="{{ route('existencias.index') }}">📦 Existencias</a></li>
-            </ul>
-       
+    body {
+        background-color:rgb(48, 63, 88);
+        
+      }
+   
+    .libro {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .libro:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .libro img {
+      width: 150px;
+      height: auto;
+      border-radius: 10px;
+      margin: 0 20px;
+    }
+    .descripcion {
+      max-width: 600px;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #444;
+    }
+  </style>
+</head>
+<body>
 
-        <div class="content">
-            <p>Bienvenido a la Biblioteca Central, donde puedes explorar una gran variedad de libros, gestionar tus préstamos y devoluciones, y más.</p>
-        </div>
+<h1 style="text-align: center; color: #DAF7A6 ;">
+  Sistema de Gestión de Bibliotecaria - Book Organizer
+</h1>
+
+
+  <div class="libro">
+  <img src="{{ asset('imagenes/cruel.jpeg') }}" alt="El Príncipe Cruel">
+    <div class="descripcion">
+      <h2>El Príncipe Cruel</h2>
+      <p>Una historia llena de intrigas, traiciones y romance en un mundo de hadas peligrosas. Jude, una humana criada en la corte de las hadas, lucha por conseguir su lugar.</p>
     </div>
+  </div>
+
+  <div class="libro">
+  <img src="{{ asset('imagenes/corazon.jpeg') }}" alt="Érase una vez un corazón roto">
+    <div class="descripcion">
+      <h2>Érase una vez un corazón roto</h2>
+      <p>Jacks, el Príncipe de Corazones, lleva a Evangeline por un camino de amor, mentiras y magia en una historia donde los finales felices no siempre están asegurados.</p>
+    </div>
+  </div>
+
+  <div class="libro">
+  <img src="{{ asset('imagenes/malvado.jpeg') }}" alt="El Rey Malvado">
+    <div class="descripcion">
+      <h2>El Rey Malvado</h2>
+      <p>Continuación de El Príncipe Cruel, esta secuela profundiza en el juego del poder mientras Jude intenta controlar el reino y lidiar con su relación con Cardan.</p>
+    </div>
+  </div>
+
+  <div class="libro">
+  <img src="{{ asset('imagenes/quijote.jpeg') }}" alt="Don Quijote de la Mancha">
+    <div class="descripcion">
+      <h2>Don Quijote de la Mancha</h2>
+      <p>La célebre novela de Miguel de Cervantes que narra las aventuras del caballero loco Don Quijote y su fiel escudero Sancho en una mezcla de fantasía, sátira y realidad.</p>
+    </div>
+  </div>
+
+  <div class="libro">
+  <img src="{{ asset('imagenes/principito.jpeg') }}" alt="El Principito">
+    <div class="descripcion">
+      <h2>El Principito</h2>
+      <p>Un cuento poético y filosófico que explora el amor, la soledad y la importancia de ver con el corazón. Un clásico que encanta tanto a niños como a adultos.</p>
+    </div>
+  </div>
+
+</body>
+</html>
 
 @endsection
