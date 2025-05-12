@@ -9,6 +9,7 @@ class DevolucionesModel extends Model
 {
     use HasFactory;
     protected $table = 'devoluciones';
+    protected $primaryKey = 'devoluciones_id'; 
 
     
     protected $fillable = [

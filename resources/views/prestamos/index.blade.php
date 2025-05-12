@@ -24,6 +24,7 @@
                 <th>Fecha de Préstamo</th>
                 <th>Fecha Límite</th>
                 <th>Estado</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,15 @@
                     <td>{{ $prestamo->fecha_prestamo }}</td>
                     <td>{{ $prestamo->fecha_limite }}</td>
                     <td>{{ $prestamo->estado }}</td>
+
+                   <td>
+
+                    <form action="{{ route('prestamos.destroy', $prestamo->prestamos_id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este prestamo?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">🗑️ Eliminar</button>
+                    </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

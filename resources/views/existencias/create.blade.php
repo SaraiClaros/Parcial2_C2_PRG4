@@ -29,8 +29,14 @@
 
         <label for="codigo_identificacion">Código de Identificación:</label>
         <input type="text" name="codigo_identificacion" required><br><br>
-
-        <button type="submit">Guardar</button>
+  
+        <div class="botones">
+        <button type="submit">Guardar Existencias</button>
+        <button type="submit">Consultar Existencias </button>
+        <button type="submit">Modificar Existencias</button>
+        <button type="submit">Guardar Existencias </button>
+        </div>
+       
     </form>
 
     <br>

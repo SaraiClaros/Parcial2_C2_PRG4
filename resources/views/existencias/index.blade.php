@@ -22,6 +22,7 @@
                 <th>Libro ID</th>
                 <th>Ubicación General</th>
                 <th>Código Identificación</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +32,15 @@
                     <td>{{ $existencia->libro_id }}</td>
                     <td>{{ $existencia->ubicacion_general }}</td>
                     <td>{{ $existencia->codigo_identificacion }}</td>
+
+                    <td>
+                    <form action="{{ route('existencias.destroy', $existencia->id_existencia) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta existencia?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">🗑️ Eliminar</button>
+                   </form>
+
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -32,7 +32,13 @@
         <label for="observaciones">Observaciones:</label><br>
         <textarea name="observaciones" rows="4" cols="50"></textarea><br><br>
 
-        <button type="submit">Guardar</button>
+        <div class="botones">
+        <button type="submit">Guardar Devoluciones</button>
+        <button type="submit">Consultar Devoluciones</button>
+        <button type="submit">Modificar Devoluciones</button>
+        <button type="submit">Eliminar Devoluciones</button>
+        </div>
+        
     </form>
 
     <br>

@@ -32,6 +32,11 @@
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->rol }}</td>
                     <td>
+                    <form action="{{ route('usuario.destroy', $usuario->usuarios_id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este Usuario?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">🗑️ Eliminar</button>
+                    </form>
         
                     </td>
                 </tr>

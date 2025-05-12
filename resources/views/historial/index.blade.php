@@ -23,6 +23,7 @@
                 <th>Acción</th>
                 <th>Detalle</th>
                 <th>Fecha</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,16 @@
                     <td>{{ $historial->accion }}</td>
                     <td>{{ $historial->detalle }}</td>
                     <td>{{ $historial->fecha }}</td>
+
+                    <td>
+                    <form action="{{ route('historial.destroy', $historial->historial_id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este Historial?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">🗑️ Eliminar</button>
+                    </form>
+
+
+                    </td>
                 </tr>
             @endforeach
         </tbody>

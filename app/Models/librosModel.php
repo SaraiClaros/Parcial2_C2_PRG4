@@ -10,6 +10,7 @@ class LibrosModel extends Model
     use HasFactory;
 
     protected $table = 'libros';
+    protected $primaryKey = 'libros_id'; 
 
     protected $fillable = [
         'titulo',

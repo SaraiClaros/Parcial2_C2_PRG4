@@ -20,7 +20,6 @@ class ExistenciasController extends Controller
         $libros = LibrosModel::all(); 
         return view('existencias.create', compact('libros'));
     }
-
    
     public function store(Request $request)
     {
@@ -57,9 +56,9 @@ class ExistenciasController extends Controller
     }
 
    
-    public function destroy($id)
+    public function destroy($id_existencia)
     {
-        $existencia = ExistenciasModel::findOrFail($id);
+        $existencia = ExistenciasModel::findOrFail($id_existencia);
         $existencia->delete();
 
         return redirect()->route('existencias.index')->with('success', 'Existencia eliminada correctamente.');

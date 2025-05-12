@@ -60,9 +60,9 @@ class PrestamosController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($prestamos_id)
     {
-        $prestamo = PrestamosModel::findOrFail($id);
+        $prestamo = PrestamosModel::findOrFail($prestamos_id);
         $prestamo->delete();
 
         return redirect()->route('prestamos.index')->with('success', 'Préstamo eliminado correctamente.');

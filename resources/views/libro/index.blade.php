@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="{{ asset('css/stilos.css') }}">
 </head>
 <body>
-    <h1>📖 Listado de Libros</h1>
+    <h1>📚 Listado de Libros</h1>
 
     <a href="{{ route('libro.create') }}">➕ Registrar Nuevo Libro</a>
 
     @if(session('success'))
-        <p>{{ session('success') }}</p>
+        <p class="success">{{ session('success') }}</p>
     @endif
 
     <table>
@@ -23,28 +23,36 @@
                 <th>Editorial</th>
                 <th>Año</th>
                 <th>Género</th>
-                <th>Clasificación</th>
-                <th>Disponible</th>
+                <th>Cantidad</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach($libros as $libro)
                 <tr>
-                    <td>{{ $libro->id }}</td>
+                    <td>{{ $libro->libros_id }}</td>
                     <td>{{ $libro->titulo }}</td>
                     <td>{{ $libro->autor }}</td>
                     <td>{{ $libro->editorial }}</td>
                     <td>{{ $libro->anio_publicacion }}</td>
                     <td>{{ $libro->genero }}</td>
-                    <td>{{ $libro->clasificacion_tematica }}</td>
                     <td>{{ $libro->cantidad_disponible }}</td>
                     <td>{{ $libro->estado }}</td>
+                    <td>
+
+                        <form action="{{ route('libro.destroy', $libro->libros_id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este libro?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">🗑️ Eliminar</button>
+                       </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <a href="{{ url('/') }}" class="footer-link">🔙 Volver al inicio</a>
+    <br>
+    <a href="{{ url('/') }}">🔙 Volver al inicio</a>
 </body>
 </html>

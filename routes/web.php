@@ -12,6 +12,9 @@ use App\Http\Controllers\PrestamosController;
 Route::get('/', function () {
     return view('index'); 
 });
+Route::get('registros', function () {
+    return view('registros'); 
+});
 
 Route::resource('libro', LibroController::class);
 Route::resource('devoluciones', DevolucionesController::class);
@@ -20,3 +23,5 @@ Route::resource('historial', HistorialController::class);
 Route::resource('existencias', ExistenciasController::class);
 Route::resource('usuario', UsuariosController::class);
 Route::resource('prestamos', PrestamosController::class);
+Route::get('/libro/consultar-ajax', [LibroController::class, 'consultarAjax'])->name('libro.consultarAjax');
+

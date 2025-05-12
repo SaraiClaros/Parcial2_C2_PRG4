@@ -33,7 +33,14 @@
         <label for="fecha">Fecha:</label>
         <input type="datetime-local" name="fecha" required><br><br>
 
-        <button type="submit">Guardar</button>
+        <div class="butones">
+        <button type="submit">Guardar Historial</button>
+        <button type="submit">Modificar Historial</button>
+        <button type="submit">Consultar Historial</button>
+        <button type="submit">Eliminar Historial</button>
+        
+        </div>
+       
     </form>
 
     <br>

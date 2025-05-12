@@ -27,8 +27,14 @@
 
         <label for="descripcion">Descripción:</label><br>
         <textarea name="descripcion" rows="4" cols="50"></textarea><br><br>
-
-        <button type="submit">Guardar</button>
+ 
+        <div class="butones">
+        <button type="submit">Guardar Generos </button>
+        <button type="submit">Consultar Generos</button>
+        <button type="submit">Modificar Generos</button>
+        <button type="submit">Eliminar Generos</button>
+        </div>
+       
     </form>
 
     <br>

@@ -37,7 +37,12 @@
             <option value="lector">Lector</option>
         </select><br><br>
 
-        <button type="submit">Guardar Usuario</button>
+        <div class="botones">
+        <button type="submit" name="accion" value="guardar">📘 Guardar Usuario</button>
+        <button type="submit" name="accion" value="consultar">🔍 Consultar Usuario</button>
+        <button type="submit" name="accion" value="modificar">✏️ Modificar Usuario</button>
+        <button type="submit" name="accion" value="eliminar">🗑️ Eliminar Usuario</button>
+        </div>
     </form>
 
     <br>

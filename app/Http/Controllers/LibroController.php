@@ -7,72 +7,100 @@ use Illuminate\Http\Request;
 
 class LibroController extends Controller
 {
-    /**
-     * Mostrar el listado de libros.
-     */
     public function index()
     {
         $libros = LibrosModel::all();
         return view('libro.index', compact('libros'));
     }
-
-    /**
-     * Mostrar el formulario para crear un nuevo libro.
-     */
-    public function create()
+    public function destroy($libros_id)
     {
+        $libros = LibrosModel::findOrFail($libros_id);
+        $libros->delete();
+
+        return redirect()->route('libro.index')->with('success', 'Libro eliminado correctamente.');
+    }
+
+
+    public function create(Request $request)
+    {
+       
+        if ($request->has('accion') && $request->accion == 'consultar' && $request->has('titulo') && $request->has('autor')) {
+            $titulo = $request->input('titulo');
+            $autor = $request->input('autor');
+
+            $libros = LibrosModel::where('titulo', $titulo)
+                                ->where('autor', $autor)
+                                ->first();
+
+            if ($libros) {
+                
+                return view('libro.create', compact('libros'))
+                    ->with('success', '🔍 Libro encontrado.');
+            } else {
+                return view('libro.create')->with('error', '❌ Libro no encontrado.');
+            }
+        }
+
         return view('libro.create');
     }
 
-    /**
-     * Almacenar un nuevo libro en la base de datos.
-     */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'autor' => 'required|string|max:255',
-            'editorial' => 'required|string|max:255',
-            'anio_publicacion' => 'required|integer',
-            'genero' => 'required|string|max:255',
-            'clasificacion_tematica' => 'nullable|string',
-            'cantidad_disponible' => 'required|integer|min:0',
-            'estado' => 'required|in:Disponible,Prestado,No disponible',
-        ]);
+        $accion = $request->input('accion');
 
-        LibrosModel::create($validated);
+        switch ($accion) {
+            case 'guardar':
+                $validated = $request->validate([
+                    'titulo' => 'required|string|max:255',
+                    'autor' => 'required|string|max:255',
+                    'editorial' => 'required|string|max:255',
+                    'anio_publicacion' => 'required|integer',
+                    'genero' => 'required|string|max:255',
+                    'clasificacion_tematica' => 'nullable|string',
+                    'cantidad_disponible' => 'required|integer|min:0',
+                    'estado' => 'required|in:Disponible,Prestado,No disponible',
+                ]);
 
-        return redirect()->route('libro.index')->with('success', '📘 Libro registrado correctamente.');
-    }
+                LibrosModel::create($validated);
 
+                return redirect()->route('libro.index')->with('success', '📘 Libro registrado correctamente.');
 
-    public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'autor' => 'required|string|max:255',
-            'editorial' => 'required|string|max:255',
-            'anio_publicacion' => 'required|integer',
-            'genero' => 'required|string|max:255',
-            'clasificacion_tematica' => 'nullable|string',
-            'cantidad_disponible' => 'required|integer|min:0',
-            'estado' => 'required|in:Disponible,Prestado,No disponible',
-        ]);
+            case 'modificar':
+                $id = $request->input('libros_id');
+                $libros = LibrosModel::find($id);
 
-        $libro = LibrosModel::findOrFail($id);
-        $libro->update($validated);
+                if (!$libros) {
+                    return redirect()->route('libro.index')->with('error', '❌ Libro no encontrado para modificar.');
+                }
 
-        return redirect()->route('libro.index')->with('success', '📘 Libro actualizado correctamente.');
-    }
+                $validated = $request->validate([
+                    'titulo' => 'required|string|max:255',
+                    'autor' => 'required|string|max:255',
+                    'editorial' => 'required|string|max:255',
+                    'anio_publicacion' => 'required|integer',
+                    'genero' => 'required|string|max:255',
+                    'clasificacion_tematica' => 'nullable|string',
+                    'cantidad_disponible' => 'required|integer|min:0',
+                    'estado' => 'required|in:Disponible,Prestado,No disponible',
+                ]);
 
-    /**
-     * Eliminar un libro.
-     */
-    public function destroy($id)
-    {
-        $libro = LibrosModel::findOrFail($id);
-        $libro->delete();
+                $libros->update($validated);
 
-        return redirect()->route('libro.index')->with('success', '🗑️ Libro eliminado correctamente.');
+                return redirect()->route('libro.index')->with('success', '✏️ Libro modificado correctamente.');
+
+            case 'eliminar':
+                $libros_id = $request->input('libros_id');
+                $libros = LibrosModel::find($libros_id);
+
+                if (!$libros) {
+                    return redirect()->route('libro.index')->with('error', '❌ Libro no encontrado para eliminar.');
+                }
+
+                $libros->delete();
+
+                return redirect()->route('libro.index')->with('success', '🗑️ Libro eliminado correctamente.');
+        }
+
+        return redirect()->route('libro.index')->with('error', '⚠️ Acción no reconocida.');
     }
 }

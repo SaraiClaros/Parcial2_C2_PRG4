@@ -21,6 +21,14 @@ class DevolucionesController extends Controller
         return view('devoluciones.create', compact('prestamos'));
     }
 
+    public function destroy($devoluciones_id)
+    {
+        $devoluciones = DevolucionesModel::findOrFail($devoluciones_id);
+        $devoluciones->delete();
+
+        return redirect()->route('devoluciones.index')->with('success', 'devoluciones eliminada correctamente.');
+    }
+
    
     public function store(Request $request)
     {
@@ -51,11 +59,5 @@ class DevolucionesController extends Controller
     }
 
     
-    public function destroy($id)
-    {
-        $devolucion = DevolucionesModel::findOrFail($id);
-        $devolucion->delete();
-
-        return redirect()->route('devoluciones.index')->with('success', 'Devolución eliminada correctamente.');
-    }
+  
 }

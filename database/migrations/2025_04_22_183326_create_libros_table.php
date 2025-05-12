@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('libros', function (Blueprint $table) {
@@ -22,6 +20,7 @@ return new class extends Migration
         $table->integer('cantidad_disponible');
         $table->enum('estado', ['Disponible', 'Prestado', 'No disponible']);
         $table->timestamps(); 
+
         });
     }
 
@@ -30,4 +29,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('libros');
     }
+
+    
 };

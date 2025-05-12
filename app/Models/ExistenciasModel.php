@@ -11,6 +11,7 @@ class ExistenciasModel extends Model
     use HasFactory;
 
     protected $table = 'existencias';
+    protected $primaryKey = 'id_existencia'; 
 
     protected $fillable = [
         'libros_id',

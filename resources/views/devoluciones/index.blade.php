@@ -35,6 +35,11 @@
                         <td>{{ $devolucion->observaciones }}</td>
                         <td>
                            
+                        <form action="{{ route('devoluciones.destroy', $devolucion->devoluciones_id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta devolución?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">🗑️ Eliminar</button>
+                       </form>
                         </td>
                     </tr>
                 @endforeach
