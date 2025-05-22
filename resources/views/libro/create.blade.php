@@ -1,3 +1,8 @@
+@extends('barra')
+
+@section('title', 'Libro - Biblioteca')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>📚 Registrar Nuevo Libro</h1>
+    <h1 style="color: #DAF7A6 ;">📚 Registrar Nuevo Libro</h1>
 
     @if ($errors->any())
         <div style="color: red;">
@@ -22,34 +27,49 @@
         <input type="hidden" name="libros_id" value="{{ old('libros_id', $libros->libros_id ?? '') }}">
 
         @csrf
-
+        <div class="form-group">
         <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" value="{{ old('titulo', $libros->titulo ?? '') }}" required>
-
+        <input type="text" class="borde-negro" id="titulo" name="titulo" value="{{ old('titulo', $libros->titulo ?? '') }}" required>
+        </div>
+         
+        <div class="form-group">
         <label for="autor">Autor:</label>
-        <input type="text" id="autor" name="autor" value="{{ old('autor', $libros->autor ?? '') }}" required>
+        <input type="text" class="borde-negro" id="autor" name="autor" value="{{ old('autor', $libros->autor ?? '') }}" required>
+        </div>
 
+        <div class="form-group">
         <label for="editorial">Editorial:</label>
-        <input type="text" name="editorial" id="editorial" value="{{ old('editorial', $libros->editorial ?? '') }}" required>
+        <input type="text" class="borde-negro" name="editorial" id="editorial" value="{{ old('editorial', $libros->editorial ?? '') }}" required>
+        </div>
 
+        <div class="form-group">
         <label for="anio_publicacion">Año de Publicación:</label>
-        <input type="number" name="anio_publicacion" id="anio_publicacion" value="{{ old('anio_publicacion', $libros->anio_publicacion ?? '') }}" required>
+        <input type="number" class="borde-negro" name="anio_publicacion" id="anio_publicacion" value="{{ old('anio_publicacion', $libros->anio_publicacion ?? '') }}" required>
+        </div>
 
+        <div class="form-group">
         <label for="genero">Género:</label>
-        <input type="text" name="genero" id="genero" value="{{ old('genero', $libros->genero ?? '') }}" required>
+        <input type="text" class="borde-negro" name="genero" id="genero" value="{{ old('genero', $libros->genero ?? '') }}" required>
+        </div>
 
+        <div class="form-group">
         <label for="clasificacion_tematica">Clasificación Temática:</label>
-        <input type="text" name="clasificacion_tematica" id="clasificacion_tematica" value="{{ old('clasificacion_tematica', $libros->clasificacion_tematica ?? '') }}">
+        <input type="text" class="borde-negro" name="clasificacion_tematica" id="clasificacion_tematica" value="{{ old('clasificacion_tematica', $libros->clasificacion_tematica ?? '') }}">
+        </div>
 
+        <div class="form-group">
         <label for="cantidad_disponible">Cantidad Disponible:</label>
-        <input type="number" name="cantidad_disponible" id="cantidad_disponible" value="{{ old('cantidad_disponible', $libros->cantidad_disponible ?? '') }}" required>
+        <input type="number" class="borde-negro" name="cantidad_disponible" id="cantidad_disponible" value="{{ old('cantidad_disponible', $libros->cantidad_disponible ?? '') }}" required>
+        </div>
 
+        <div class="form-group">
         <label for="estado">Estado:</label>
-        <select name="estado" id="estado" required>
+        <select name="estado" class="borde-negro"  id="estado" required>
             <option value="Disponible" {{ isset($libros) && $libros->estado == 'Disponible' ? 'selected' : '' }}>Disponible</option>
             <option value="Prestado" {{ isset($libros) && $libros->estado == 'Prestado' ? 'selected' : '' }}>Prestado</option>
             <option value="No disponible" {{ isset($libros) && $libros->estado == 'No disponible' ? 'selected' : '' }}>No disponible</option>
         </select>
+        </div>
 
         <div class="butones">
             <button type="submit" name="accion" value="guardar">📘 Guardar Libro</button>
@@ -60,7 +80,8 @@
     </form>
 
     <br>
-    <a href="{{ route('libro.index') }}">🔙 Ver listado de libros</a>
+   <a href="{{ route('devoluciones.index') }}" class="enlace-volver">🔙 Ver listado de Devoluciones</a>
+
 
     <script>
         $(document).ready(function() {
@@ -98,3 +119,4 @@
     </script>
 </body>
 </html>
+@endsection

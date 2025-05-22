@@ -1,12 +1,13 @@
 @extends('barra')
 
-@section('title', 'Inicio - Biblioteca')
+@section('title', 'Registros - Biblioteca')
 
 @section('content')
 
     <div class="container">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-        <h1>📚 Bienvenido a la Biblioteca</h1>
+        <h1 style="color: #DAF7A6 ;">📚 Bienvenido a Registros</h1>
+
 
         <div class="regis">
             <ul>
@@ -25,10 +26,6 @@
         </div>
 
        
-
-        <div class="content">
-            <p>Bienvenido a la Biblioteca Central, donde puedes explorar una gran variedad de libros, gestionar tus préstamos y devoluciones, y más.</p>
-        </div>
     </div>
 
 @endsection

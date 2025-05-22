@@ -5,13 +5,19 @@ h1 {
 }
 
 form {
-    max-width: 500px;
+    max-width: 550px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: #cccbea;
     padding: 30px;
     border-radius: 10px;
+    border: 2px solid black;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+
+ body {
+        background-color:rgb(48, 63, 88);
+        
+      }
 
 label {
     display: block;
@@ -38,7 +44,7 @@ a {
 
 button {
     margin-top: 20px;
-    background-color: #114322;
+    background-color:rgb(48, 63, 88);
     color: white;
     padding: 20px 20px;
     border: none;
@@ -61,7 +67,7 @@ button {
 .regis {
     margin: 20px; 
     padding: 10px;
-    background-color: #f8f8f8; 
+    background-color:rgb(59, 74, 99);;
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
@@ -109,9 +115,73 @@ button {
     margin-right: 15px; 
 }
 
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.form-group label {
+    width: 150px;
+   
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 200px;
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    
+}
+
+.form-group label {
+    width: 150px;
+    font-weight: bold;
+    font-size: 22px; 
+   
+}
+
+
+
+input.borde-negro {
+  border: 2px solid black;
+}
+
+
+
+
 
 @media (max-width: 768px) {
     .regis li {
         width: 100%;
     }
+}
+
+
+.butones {
+    display: grid;
+    grid-template-columns: repeat(2, auto); 
+    gap: 10px; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px;
+     
+}
+
+
+.enlace-volver {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;       
+    color: white;            
+    margin-top: 30px;        
+    text-decoration: none; 
+    margin-bottom: 30px;  
+}
+
+.enlace-volver:hover {
+    color: #DAF7A6;         
 }

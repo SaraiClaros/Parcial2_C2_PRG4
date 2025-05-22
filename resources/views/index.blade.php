@@ -20,19 +20,23 @@
       display: flex;
       align-items: center;
       margin-bottom: 40px;
+      gap: 10px; 
+      
     }
     .libro:nth-child(even) {
       flex-direction: row-reverse;
     }
     .libro img {
       width: 150px;
-      height: auto;
+      min-width: 150px;
+      height: 220px;
       border-radius: 10px;
       margin: 0 20px;
+      flex-shrink: 0;
     }
     .descripcion {
       max-width: 600px;
-      background-color: #ffffff;
+      background-color:rgb(199, 212, 241);
       padding: 15px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -40,6 +44,8 @@
     h2 {
       color: #444;
     }
+
+  
   </style>
 </head>
 <body>
@@ -58,7 +64,7 @@
   </div>
 
   <div class="libro">
-  <img src="{{ asset('imagenes/corazon.jpeg') }}" alt="Érase una vez un corazón roto">
+  <img src="{{ asset('imagenes/roto.jpeg') }}" alt="Érase una vez un corazón roto">
     <div class="descripcion">
       <h2>Érase una vez un corazón roto</h2>
       <p>Jacks, el Príncipe de Corazones, lleva a Evangeline por un camino de amor, mentiras y magia en una historia donde los finales felices no siempre están asegurados.</p>
@@ -74,7 +80,7 @@
   </div>
 
   <div class="libro">
-  <img src="{{ asset('imagenes/quijote.jpeg') }}" alt="Don Quijote de la Mancha">
+  <img src="{{ asset('imagenes/mancha.jpeg') }}" alt="Don Quijote de la Mancha">
     <div class="descripcion">
       <h2>Don Quijote de la Mancha</h2>
       <p>La célebre novela de Miguel de Cervantes que narra las aventuras del caballero loco Don Quijote y su fiel escudero Sancho en una mezcla de fantasía, sátira y realidad.</p>
