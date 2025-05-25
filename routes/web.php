@@ -17,11 +17,40 @@ Route::get('registros', function () {
 });
 
 Route::resource('libro', LibroController::class);
-Route::resource('devoluciones', DevolucionesController::class);
-Route::resource('genero', GeneroController::class);
+Route::post('/libro/create', [LibroController::class, 'create'])->name('libro.create');
+
+
+Route::resource('devoluciones', DevolucionesController::class)->only([
+    'index', 'create', 'store', 'destroy','update'
+]);
+Route::post('/devoluciones/consultar', [DevolucionesController::class, 'consult'])->name('devoluciones.consultar');
+
+
+Route::resource('genero', GeneroController::class)->only([
+    'index', 'create', 'store', 'destroy','update'
+]);
+Route::post('/genero/consultar', [GeneroController::class, 'consult'])->name('genero.consultar');
+
 Route::resource('historial', HistorialController::class);
-Route::resource('existencias', ExistenciasController::class);
-Route::resource('usuario', UsuariosController::class);
-Route::resource('prestamos', PrestamosController::class);
-Route::get('/libro/consultar-ajax', [LibroController::class, 'consultarAjax'])->name('libro.consultarAjax');
+Route::post('/historial/consultar', [HistorialController::class, 'consult'])->name('historial.consultar');
+
+
+Route::resource('existencias', ExistenciasController::class) ->only([
+    'index', 'create', 'store', 'destroy','update'
+]);
+Route::post('/existencias/consultar', [ExistenciasController::class, 'consult'])->name('existencia.consultar');
+
+
+Route::resource('usuario', UsuariosController::class)->only([
+    'index', 'create', 'store', 'destroy','update'
+]);
+Route::post('/usuario/consultar', [UsuariosController::class, 'consult'])->name('usuario.consultar');
+
+
+Route::resource('prestamos', PrestamosController::class) ->only([
+    'index', 'create', 'store', 'destroy','update'
+]);
+Route::post('/prestamos/consultar', [PrestamosController::class, 'consult'])->name('prestamos.consultar');
+
+
 
